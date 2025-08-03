@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Aksssss 🎉</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      background: url('hearts-background.webp') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      text-align: center;
+      position: relative;
+    }
+
+    .overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+  pointer-events: none;
+}
+
+    .container {
+      position: relative;
+      z-index: 2;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      color: #ffd1dc;
+    }
+
+    .subtext {
+      font-size: 1.2em;
+      margin-bottom: 40px;
+      color: #fce4ec;
+    }
+
+    .buttons button {
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 1em;
+      border: none;
+      border-radius: 25px;
+      background-color: #ff85a2;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .buttons button:hover {
+      background-color: #ff407d;
+    }
+
+    .reveal-box {
+      margin-top: 30px;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      display: none;
+    }
+
+    .reveal-box.active {
+      display: block;
+      opacity: 1;
+    }
+
+    img {
+      max-width: 300px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    .final-message {
+      margin-top: 60px;
+      font-size: 1.2em;
+      color: #ffe4f0;
+    }
+
+    audio {
+      display: none;
+    }
+
+    /* Floating hearts animation */
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff92b2;
+      font-size: 20px;
+      animation: float 8s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <!-- Music -->
+  <audio autoplay loop id="bg-music">
+    <source src="best-part.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Floating hearts container -->
+  <div class="hearts" id="hearts"></div>
+
+  <div class="container">
+    <h1>Happy Birthday to my favourite gurll!!❣️</h1>
+    
+
+    <div class="buttons">
+      <button onclick="reveal(1)">💝</button>
+      <button onclick="reveal(2)">🥰</button>
+      <button onclick="reveal(3)">💞</button>
+    </div>
+
+    <div id="reveal1" class="reveal-box">
+      <p>
+        Happy birthday da Akshayaa. I dont even know where to start,yeah.... You're the most beautifull girl everr, you desevre everything that you wish for.<br/>
+        My life got so much better after getting to know you.Everything feels a little too good to be true to be honest. You're the one person I'd never wanna loose<br/>
+        You're the bessttest girllll and I love you so much..You're the best parttt of my life..
+      </p>
+    </div>
+
+    <div id="reveal2" class="reveal-box">
+      <img src="images/photo1.jpg" alt="Photo 1" />
+      <img src="images/photo2.jpg" alt="Photo 2" />
+      <img src="images/photo3.jpg" alt="Photo 3" />
+      <img src="images/photo4.jpg" alt="Photo 4" /><br/>
+      <img src="images/photo5.jpg" alt="Photo 5" />
+      <img src="images/photo6.jpg" alt="Photo 6" />
+
+    </div>
+
+    <div id="reveal3" class="reveal-box">
+      <p>BUY ME SHAWARMA!! Oh and WE SHOULD TAKE MORE PICTURES.</p>
+    </div>
+
+    <div class="final-message">
+      <p>
+        Happy Birthday to the most amazing girl everrr🥰🥰🥰!!<br/>
+        You made me luckiest dood in the world.<br/>
+        Love you lots!!!
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function reveal(num) {
+      for (let i = 1; i <= 3; i++) {
+        const box = document.getElementById("reveal" + i);
+        box.classList.remove("active");
+      }
+      document.getElementById("reveal" + num).classList.add("active");
+    }
+
+    // Autoplay workaround
+    document.addEventListener('click', () => {
+      const audio = document.getElementById('bg-music');
+      if (audio.paused) {
+        audio.play().catch(() => {});
+      }
+    });
+
+    // Floating hearts logic
+    const heartContainer = document.getElementById("hearts");
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "💗";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random() * 15 + 10) + "px";
+      heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      heartContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
